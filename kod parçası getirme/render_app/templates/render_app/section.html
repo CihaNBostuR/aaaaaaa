@@ -1,0 +1,23 @@
+<div id="section-container"></div>
+<button id="get-section-btn">Bölümü Getir</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#get-section-btn').click(function() {
+    $.ajax({
+      type: 'GET',
+      url: '{% url "get_section" %}',
+      success: function(response) {
+        var data = JSON.parse(response);
+        $('#section-container').html(data.section_html);
+      },
+      error: function(response) {
+        console.log('Bir hata oluştu!');
+      }
+    });
+  });
+});
+
+
+</script>
